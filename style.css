@@ -1,0 +1,669 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   FONT
+========================= */
+body {
+    font-family: 'Press Start 2P', cursive; /* PixelArt */
+    color: #222;
+}
+
+/* =========================
+   BACKGROUND GLOBAL
+========================= */
+body {
+    position: relative;
+    background-image: url("assets/Background_day.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Overlay semi-transparent pour lisibilité */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.0); 
+    z-index: 0;
+}
+
+/* =========================
+   WRAPPER GLOBAL
+========================= */
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Bouton de changement de thème séparé */
+.theme-btn {
+    position: fixed;      /* reste toujours visible */
+    top: 100px;            /* distance du haut */
+    left: 100px;           /* distance de la gauche */
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    cursor: pointer;
+    z-index: 1000;        /* devant tous les éléments */
+    /* transition: transform 0.3s; */
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+/* =========================
+   RESPONSIVE – THEME BUTTON
+========================= */
+
+@media (max-width: 768px) {
+
+    .theme-btn {
+        top: 10px;          /* coin haut */
+        left: auto;         /* on annule la gauche */
+        right: 10px;        /* coin droit */
+        width: 35px;        /* taille mobile */
+        height: 35px;
+        z-index: 10000;     /* AU-DESSUS de la navbar */
+    }
+
+}
+
+
+
+.nav-links a.active {
+    color: red;
+    font-weight: bold; /* optionnel pour le distinguer encore plus */
+}
+
+/* #region NAVBAR */
+
+/* =========================
+   NAVBAR GLOBALE
+========================= */
+
+.navbar {
+    width: 100%;
+    background: transparent; /* ou couleur/blur si tu veux */
+    padding: 150px 0 50px 0;
+}
+
+/* INNER : centrage + largeur max */
+.navbar-inner {
+    max-width: 1200px;        /* largeur maximale de la navbar */
+    margin: 0 auto;            /* centrage horizontal */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;     /* ✅ tous les éléments alignés par le bas */
+    padding: 0 100px;           /* espace à gauche et à droite */
+}
+
+/* NOM */
+.logo-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 0px; /* espace entre logo et nom */
+    position: relative; /* pour que le décalage soit relatif à ce conteneur */
+}
+
+/* Nom */
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* MENU */
+.nav-links {
+    display: flex;
+    gap: 35px; /* espacement entre les options */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.0rem;
+    /* transition: opacity 0.3s; */
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding-top: 20px;
+        padding-left: 10px;    
+        padding-bottom: 20px;
+    }
+
+    .navbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .logo-container {
+        gap: 10px;
+    }
+}
+
+/* #endregion */
+
+/* =========================
+   CONTENU GLOBAL
+========================= */
+main {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* #region THEME */
+
+/* =========================
+   THEMES AVEC IMAGE DE FOND
+========================= */
+
+/* Thème clair */
+body.light-theme {
+    background-image: url("../assets/Background_day.webp");
+    background-size: cover;
+    background-position: center;
+    color: #111; /* texte sombre */
+}
+
+body.home-page.light-theme {
+    background-image: url("../assets/Background_home_day.webp");
+}
+
+body.light-theme a {
+    color: #111;
+}
+
+/* Thème sombre */
+body.dark-theme {
+    background-image: url("../assets/Background_night.webp");
+    background-size: cover;
+    background-position: center;
+    color: #f5f5f5; /* texte clair */
+}
+
+body.home-page.dark-theme {
+    background-image: url("../assets/Background_home_night.webp");
+}
+
+body.dark-theme a {
+    color: #f5f5f5;
+}
+
+/* Transitions douces */
+/* body {
+    transition: background-image 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.nav-links a, .logo-text {
+    transition: color 0.5s;
+} */
+
+/* #endregion */
+
+/* #region ABOUT */
+
+/* =========================
+   PAGE ABOUT
+========================= */
+/* .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: top;
+    min-height: 70vh;
+} */
+
+.about-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* Photo */
+.about-photo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Texte */
+.about-text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE ABOUT
+========================= */
+
+@media (max-width: 768px) {
+
+    .about-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-text  {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+}
+
+/* #endregion */
+
+/* #region ILLUSTRATIONS */
+
+/* =========================
+   ILLUSTRATIONS PAGE
+========================= */
+
+.illustrations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.illustrations-intro p {
+    font-size: 1.0rem;
+    line-height: 1.5;
+}
+
+/* Une illustration */
+.illustration-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centrage horizontal */
+}
+
+/* Image */
+.illustration-item img {
+    width: 500px;        /* taille d’affichage souhaitée */
+    max-width: 100%;
+    height: auto;
+    image-rendering: auto; /* important */
+}
+
+
+/* Titre */
+.illustration-item h2 {
+    margin-top: 20px;
+    font-size: 1.0rem;
+    text-align: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .illustration-item img {
+        max-width: 100%;
+    }
+}
+
+/* #endregion */
+
+/* #region ANIMATIONS */
+
+/* =========================
+   FILMS PAGE
+========================= */
+
+.films-list {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+/* Un film */
+.film-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Vidéo */
+.film-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.film-video iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* Infos */
+.film-info h2 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.film-info p {
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .film-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .film-info h2 {
+        margin-top: 10px;
+    }
+}
+
+/* #endregion */
+
+/* #region MUSIC */
+
+/* =========================
+   MUSIC PAGE
+========================= */
+
+.music-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* côte à côte */
+    gap: 80px;
+}
+
+.music-intro {
+    grid-column: 1 / -1; /* prend toute la largeur de la grille */
+    margin-bottom: 0px;
+}
+
+.music-intro p {
+    max-width: 1200px;
+    font-size: 1.0rem;
+    line-height: 1.5;
+}
+
+/* Un projet */
+.music-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image */
+.music-item img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.music-item img:hover {
+    transform: scale(1.02);
+}
+
+/* Titre */
+.music-title {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    transition: opacity 0.3s;
+}
+
+.music-title:hover {
+    opacity: 0.7;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .music-list {
+        grid-template-columns: 1fr; /* retour en colonne */
+        gap: 60px;
+    }
+}
+
+
+/* #endregion */
+
+/* #region SCORES */
+
+/* =========================
+   SCORES PAGE
+========================= */
+
+.scores-list {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+/* Un score */
+.score-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Médias */
+.score-media img,
+.score-media iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+}
+
+/* Texte + audio */
+.score-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.score-info p {
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Lecteur audio */
+.audio-item {
+    margin-bottom: 30px; /* espace entre les extraits */
+}
+
+.audio-item audio {
+    width: 100%; /* lecteur bien aligné */
+}
+
+.audio-title {
+    margin-top: 10px;
+    font-size: 0.75rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .score-item {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* #endregion */
+
+/* #region MY_MUSIC */
+
+/* =========================
+   MUSIC PROJECT PAGE
+========================= */
+
+.music-project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* Colonne gauche */
+.music-project-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.music-project-left img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.music-project-left p {
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Colonne droite */
+.music-project-right {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Un track */
+.track-item audio {
+    width: 100%;
+}
+
+.track-item h3 {
+    margin-top: 10px;
+    font-size: 0.75rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .music-project {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .music-project-left img {
+        max-width: 100%;
+    }
+}
+
+/* #endregion */
+
+/* #region VIDEO_GAME */
+
+/* =========================
+   VIDEO GAMES PAGE
+========================= */
+
+.games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+.games-intro p {
+    font-size: 1.0rem;
+    line-height: 1.5;
+}
+
+/* Un jeu */
+.game-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Médias */
+.game-media {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-media img,
+.game-media iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+}
+
+/* Texte */
+.game-info h2 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.game-info p {
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .game-item {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* #endregion */

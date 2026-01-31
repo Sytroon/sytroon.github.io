@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music - Hugo Robic</title>
+
+    <!-- Police Pixel -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- Bouton changement de thème -->
+    <img src="../assets/Sun.png" alt="Changer thème" id="themeSwitcher" class="theme-btn"><!-- Bouton changement de thème -->
+
+    <header class="navbar">
+        <div class="page-wrapper navbar-inner">
+            <!-- LOGO + IMAGE CLIQUABLE -->
+            <div class="logo-container">
+                <a href="../index.html" class="logo-text">Hugo Robic</a>
+            </div>
+
+            <nav class="nav-links">
+                <a href="scores.html">Music</a>
+                <a href="illustration.html">3D</a>
+                <a href="films.html">Animation</a>
+                <a href="videogames.html">Games</a>
+                <a href="about.html">Me</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENU MUSIC -->  
+    <main class="page-wrapper music-list">
+        <div class="music-intro">
+            <p>
+                I like making music with everything i can get my hands on, instruments, computers, 
+                everyday objects, random sounds around my house... My main instruments are the drums and the guitar but I also mess a bit with the bass and the clarinet
+                I mostly work with live instruments and recorded sounds in Ableton Live.
+            </p>
+        </div>
+
+        <!-- PROJET 1 -->
+        <section class="music-item">
+            <a href="scores.html">
+                <img src="../assets/Flower.png" alt="Music Project 1">
+            </a>
+            <a href="scores.html" class="music-title">
+                Scores
+            </a>
+        </section>
+
+        <!-- PROJET 2 -->
+        <section class="music-item">
+            <a href="my_music.html">
+                <img src="../assets/music2.webp" alt="Music Project 2">
+            </a>
+            <a href="my_music.html" class="music-title">
+                My Music
+            </a>
+        </section>
+
+    </main>
+
+    <script>
+        const themeBtn = document.getElementById('themeSwitcher');
+        const body = document.body;
+
+        // Récupérer le thème dans localStorage
+        let currentTheme = localStorage.getItem('theme') || 'light-theme';
+
+        // Appliquer le thème au chargement
+        body.classList.add(currentTheme);
+        themeBtn.src = currentTheme === 'light-theme' ? "../assets/Sun.png" : "../assets/Moon.png";
+
+        // Changement de thème au clic
+        themeBtn.addEventListener('click', () => {
+            if(body.classList.contains('light-theme')) {
+                // passer en sombre
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeBtn.src = "../assets/Moon.png";
+                localStorage.setItem('theme', 'dark-theme'); // sauvegarder
+            } else {
+                // passer en clair
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeBtn.src = "../assets/Sun.png";
+                localStorage.setItem('theme', 'light-theme'); // sauvegarder
+            }
+        });
+    </script>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const currentPath = window.location.pathname; 
+        const currentFile = currentPath.split("/").pop(); // exemple: "scores.html"
+
+        // Map des catégories pour les sous-pages
+        const categoryMap = {
+            'muusic.html': ['music.html', 'scores.html', 'my_music.html'],
+            'films.html': ['films.html'], 
+            'about.html': ['about.html'], 
+            'illustration.html': ['illustration.html'], 
+            'videogames.html': ['videogames.html']
+        };
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+
+            // Vérifier si le fichier actuel est dans la catégorie du lien
+            if(categoryMap[href] && categoryMap[href].includes(currentFile)) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Games - Hugo Robic</title>
+
+    <!-- Police Pixel -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- Bouton changement de thème -->
+    <img src="../assets/Sun.png" alt="Changer thème" id="themeSwitcher" class="theme-btn"><!-- Bouton changement de thème -->
+
+    <header class="navbar">
+        <div class="page-wrapper navbar-inner">
+            <!-- LOGO + IMAGE CLIQUABLE -->
+            <div class="logo-container">
+                <a href="../index.html" class="logo-text">Hugo Robic</a>
+            </div>
+
+            <nav class="nav-links">
+                <a href="scores.html">Music</a>
+                <a href="illustration.html">3D</a>
+                <a href="films.html">Animation</a>
+                <a href="videogames.html">Games</a>
+                <a href="about.html">Me</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENU VIDEO GAMES -->
+    <main class="page-wrapper games-list">
+
+        <div class="games-intro">
+            <p>I make games using mainly the Godot game engine and also Blender for 3D models, textures and animations.</p>
+        </div>
+
+        <!-- JEU 1 -->
+        <section class="game-item">
+
+            <!-- MEDIAS -->
+            <div class="game-media">
+                <img src="../assets/Medieval1.png" alt="Game 1 screenshot">
+                <img src="../assets/Medieval2.png" alt="Game 1 screenshot">
+                <img src="../assets/Medieval6.png" alt="Game 1 screenshot">
+
+                <!-- Option vidéo -->
+                <iframe src="https://www.youtube.com/embed/NdYAPa9Ou5M?si=ueybkfjRCqizFCFX"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+
+            <!-- TEXTE -->
+            <div class="game-info">
+                <h2>Life at Sea</h2>
+                <p>
+                    This game was made in a week with absolutely zero knowledge about game development.
+                    Its purpose was to learn about basics in a limited amount of time.
+                </p>
+                <br></br>
+                <p>
+                    In Life at Sea, the player picks up an axe and a hammer to destroy what remains of an abandoned village in order to build a boat and finally live a life at sea.
+                    But when he destroys the king's tower, it's too much !The player must defeat him to finally leave.
+                <br></br>
+                <p>
+                    Full Playthrough available below !
+                </p>
+            </div>
+
+        </section>
+
+        <!-- JEU 2 -->
+        <section class="game-item">
+
+            <div class="game-media">
+                <img src="../assets/BC1.png" alt="Game 2 screenshot">
+                <img src="../assets/BC9.png" alt="Game 2 screenshot">
+                <img src="../assets/BC6.png" alt="Game 1 screenshot">
+
+                <!-- Option vidéo -->
+                <iframe src="https://www.youtube.com/embed/w2Bv8vywScg?si=_nsiCs1Qplf-o9G0"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+
+            <div class="game-info">
+                <h2>BossChef</h2>
+                <p>
+                    BossChef is a game we made with a friend as a student project. Since the game is made up of different mini-games, 
+                    we each worked on one of them separately, and then I combined everything into the main game, adding the UI and a combat system.
+                </p>
+                <br></br>
+                <p>
+                    The player takes on the role of a mafia boss's cook/bodyguard (times are tough and staff are expensive). 
+                    To finish the game, they must prepare five servings of spaghetti bolognese for him while defending him against thugs from a rival gang. 
+                    If the boss dies, the game is lost; if he's full, it's a win!
+                </p>
+                <br></br>
+                <p>
+                    The player cooks while playing different mini-games (rhythm, precision, and speed games). 
+                    To play these games, they need the right utensil: a rifle, a knife, or a ladle. While he cooks,
+                    enemies arrive in waves to attack the Boss. To
+                    defend him (and himself), the different utensils have
+                    different effects: range attacks, quick attacks, area damage.
+                </p>
+                <br></br>
+                <p>
+                    Full Playthrough available below !
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const themeBtn = document.getElementById('themeSwitcher');
+        const body = document.body;
+
+        // Récupérer le thème dans localStorage
+        let currentTheme = localStorage.getItem('theme') || 'light-theme';
+
+        // Appliquer le thème au chargement
+        body.classList.add(currentTheme);
+        themeBtn.src = currentTheme === 'light-theme' ? "../assets/Sun.png" : "../assets/Moon.png";
+
+        // Changement de thème au clic
+        themeBtn.addEventListener('click', () => {
+            if(body.classList.contains('light-theme')) {
+                // passer en sombre
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeBtn.src = "../assets/Moon.png";
+                localStorage.setItem('theme', 'dark-theme'); // sauvegarder
+            } else {
+                // passer en clair
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeBtn.src = "../assets/Sun.png";
+                localStorage.setItem('theme', 'light-theme'); // sauvegarder
+            }
+        });
+    </script>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const currentPath = window.location.pathname; 
+        const currentFile = currentPath.split("/").pop(); // exemple: "scores.html"
+
+        // Map des catégories pour les sous-pages
+        const categoryMap = {
+            'music.html': ['music.html', 'scores.html', 'my_music.html'],
+            'films.html': ['films.html'], 
+            'about.html': ['about.html'], 
+            'illustration.html': ['illustration.html'], 
+            'videogames.html': ['videogames.html']
+        };
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+
+            // Vérifier si le fichier actuel est dans la catégorie du lien
+            if(categoryMap[href] && categoryMap[href].includes(currentFile)) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illustrations - Hugo Robic</title>
+
+    <!-- Police Pixel -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- Bouton changement de thème -->
+    <img src="../assets/Sun.png" alt="Changer thème" id="themeSwitcher" class="theme-btn"><!-- Bouton changement de thème -->
+
+    <header class="navbar">
+        <div class="page-wrapper navbar-inner">
+            <!-- LOGO + IMAGE CLIQUABLE -->
+            <div class="logo-container">
+                <a href="../index.html" class="logo-text">Hugo Robic</a>
+            </div>
+
+            <nav class="nav-links">
+                <a href="scores.html">Music</a>
+                <a href="illustration.html">3D</a>
+                <a href="films.html">Animation</a>
+                <a href="videogames.html">Games</a>
+                <a href="about.html">Me</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENU ILLUSTRATIONS -->
+    <main class="page-wrapper illustrations-list">
+
+        <div class="illustrations-intro">
+            <p>Everything here is made with Blender.</p>
+        </div>
+
+        <!-- ILLUSTRATION 1 -->
+        <section class="illustration-item">
+            <img src="../assets/CA.png" alt="Illustration 1">
+            <h2>The Hermit</h2>
+        </section>
+
+         <!-- ILLUSTRATION 2 -->
+        <section class="illustration-item">
+            <img src="../assets/Lobster.png" alt="Illustration 2">
+            <h2>The Lobster</h2>
+        </section>
+
+        <!-- ILLUSTRATION 3 -->
+        <section class="illustration-item">
+            <img src="../assets/Flower.png" alt="Illustration 3">
+            <h2>For Me ?!!</h2>
+        </section>
+
+        <!-- ILLUSTRATION 4 -->
+        <section class="illustration-item">
+            <img src="../assets/Colline.png" alt="Illustration 4">
+            <h2>Behind the Hill</h2>
+        </section>
+
+        
+        <!-- ILLUSTRATION 5 -->
+        <section class="illustration-item">
+            <img src="../assets/FrogV4.png" alt="Illustration 5">
+            <h2>Inner Peace</h2>
+        </section>
+
+        <!-- ILLUSTRATION 6 -->
+        <section class="illustration-item">
+            <img src="../assets/Robot.png" alt="Illustration 6">
+            <h2>Lonely Machine</h2>
+        </section>
+
+        <!-- ILLUSTRATION 7 -->
+        <section class="illustration-item">
+            <img src="../assets/Submarine.png" alt="Illustration 7">
+            <h2>Scraphead</h2>
+        </section>
+
+        <!-- Ajoute autant d’illustrations que nécessaire -->
+
+    </main>
+
+    <script>
+        const themeBtn = document.getElementById('themeSwitcher');
+        const body = document.body;
+
+        // Récupérer le thème dans localStorage
+        let currentTheme = localStorage.getItem('theme') || 'light-theme';
+
+        // Appliquer le thème au chargement
+        body.classList.add(currentTheme);
+        themeBtn.src = currentTheme === 'light-theme' ? "../assets/Sun.png" : "../assets/Moon.png";
+
+        // Changement de thème au clic
+        themeBtn.addEventListener('click', () => {
+            if(body.classList.contains('light-theme')) {
+                // passer en sombre
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                themeBtn.src = "../assets/Moon.png";
+                localStorage.setItem('theme', 'dark-theme'); // sauvegarder
+            } else {
+                // passer en clair
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                themeBtn.src = "../assets/Sun.png";
+                localStorage.setItem('theme', 'light-theme'); // sauvegarder
+            }
+        });
+    </script>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const currentPath = window.location.pathname; 
+        const currentFile = currentPath.split("/").pop(); // exemple: "scores.html"
+
+        // Map des catégories pour les sous-pages
+        const categoryMap = {
+            'music.html': ['music.html', 'scores.html', 'my_music.html'],
+            'films.html': ['films.html'], 
+            'about.html': ['about.html'], 
+            'illustration.html': ['illustration.html'], 
+            'videogames.html': ['videogames.html']
+        };
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+
+            // Vérifier si le fichier actuel est dans la catégorie du lien
+            if(categoryMap[href] && categoryMap[href].includes(currentFile)) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
