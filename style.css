@@ -53,15 +53,14 @@ body::before {
 
 /* Bouton de changement de thème séparé */
 .theme-btn {
-    position: fixed;      /* reste toujours visible */
-    top: 100px;            /* distance du haut */
-    left: 100px;           /* distance de la gauche */
+    position: fixed;     
+    top: 100px;            
+    left: 100px;         
     width: 100px;
     height: 100px;
     object-fit: contain;
     cursor: pointer;
-    z-index: 1000;        /* devant tous les éléments */
-    /* transition: transform 0.3s; */
+    z-index: 1000;    
 }
 
 .theme-btn:hover {
@@ -71,6 +70,19 @@ body::before {
 /* =========================
    RESPONSIVE – THEME BUTTON
 ========================= */
+
+@media (max-width: 1500px) {
+
+    .theme-btn {
+        top: 10px;          /* coin haut */
+        left: auto;         /* on annule la gauche */
+        right: 10px;        /* coin droit */
+        width: 35px;        /* taille mobile */
+        height: 35px;
+        z-index: 10000;     /* AU-DESSUS de la navbar */
+    }
+
+}
 
 @media (max-width: 768px) {
 
@@ -84,8 +96,6 @@ body::before {
     }
 
 }
-
-
 
 .nav-links a.active {
     color: red;
@@ -430,9 +440,11 @@ body.dark-theme a {
 
 /* Image */
 .music-item img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
+    /* width: 100%; */
+    /* max-width: 250px; */
+    height: 100%;
+    max-height: 250px;
+    width: auto;
     border-radius: 4px;
     display: block;
     transition: transform 0.3s;
@@ -578,6 +590,12 @@ body.dark-theme a {
 }
 
 /* Un track */
+.track-item {
+    display: flex;
+    flex-direction: column;
+    align-items: left; 
+}
+
 .track-item audio {
     width: 100%;
 }
