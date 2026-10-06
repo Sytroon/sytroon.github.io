@@ -20,7 +20,7 @@ body {
 ========================= */
 body {
     position: relative;
-    background-image: url("assets/Background_day.webp");
+    background-image: url("./assets/Background_day.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -202,14 +202,14 @@ main {
 
 /* Thème clair */
 body.light-theme {
-    background-image: url("../assets/Background_day.webp");
+    background-image: url("./assets/Background_day.webp"); /* Ajouter ../ faisait que le background ne chargait pas */
     background-size: cover;
     background-position: center;
     color: #111; /* texte sombre */
 }
 
 body.home-page.light-theme {
-    background-image: url("../assets/Background_home_day.webp");
+    background-image: url("./assets/Background_home_day.webp");
 }
 
 body.light-theme a {
@@ -218,14 +218,14 @@ body.light-theme a {
 
 /* Thème sombre */
 body.dark-theme {
-    background-image: url("../assets/Background_night.webp");
+    background-image: url("./assets/Background_night.webp");
     background-size: cover;
     background-position: center;
     color: #f5f5f5; /* texte clair */
 }
 
 body.home-page.dark-theme {
-    background-image: url("../assets/Background_home_night.webp");
+    background-image: url("./assets/Background_home_night.webp");
 }
 
 body.dark-theme a {

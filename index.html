@@ -10,7 +10,7 @@
 <body class="home-page">
 
     <!-- Bouton changement de thème -->
-    <img src="../assets/Sun.png" alt="Changer thème" id="themeSwitcher" class="theme-btn"><!-- Bouton changement de thème -->
+    <img src="./assets/Sun.png" alt="Changer thème" id="themeSwitcher" class="theme-btn"><!-- Bouton changement de thème -->
 
     <header class="navbar">
         <div class="page-wrapper navbar-inner">
@@ -43,7 +43,7 @@
 
         // Appliquer le thème au chargement
         body.classList.add(currentTheme);
-        themeBtn.src = currentTheme === 'light-theme' ? "../assets/Sun.png" : "../assets/Moon.png";
+        themeBtn.src = currentTheme === 'light-theme' ? "./assets/Sun.png" : "./assets/Moon.png";
 
         // Changement de thème au clic
         themeBtn.addEventListener('click', () => {
@@ -51,13 +51,13 @@
                 // passer en sombre
                 body.classList.remove('light-theme');
                 body.classList.add('dark-theme');
-                themeBtn.src = "../assets/Moon.png";
+                themeBtn.src = "./assets/Moon.png";
                 localStorage.setItem('theme', 'dark-theme'); // sauvegarder
             } else {
                 // passer en clair
                 body.classList.remove('dark-theme');
                 body.classList.add('light-theme');
-                themeBtn.src = "../assets/Sun.png";
+                themeBtn.src = "./assets/Sun.png";
                 localStorage.setItem('theme', 'light-theme'); // sauvegarder
             }
         });
